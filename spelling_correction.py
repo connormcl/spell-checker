@@ -1,4 +1,6 @@
 # Connor McLaughlin
+#
+# Simple spell checker that uses a slightly modified version of the Levenshtein distance
 
 import sys
 
@@ -36,6 +38,8 @@ def del_cost(first_or_last, char):
     if first_or_last:
         return 4
     elif char == 'c':
+        return 4
+    elif char == 'v':
         return 4
     else:
         return 1
