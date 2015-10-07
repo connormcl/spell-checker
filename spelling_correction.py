@@ -21,25 +21,23 @@ def sub_cost(source_char, target_char):
     if source_char == target_char:
         return 0
     elif (source_char == 'a' and target_char == 'e') or (source_char == 'e' and target_char == 'a'):
-        return 1
+        return 1  # see (ii)
     elif (source_char == 's' and target_char == 'c') or (source_char == 'c' and target_char == 's'):
-        return 1
-    # elif (source_char == 's' and target_char == 'r') or (source_char == 'r' and target_char == 's'):
-    #     return 1
+        return 1  # see (iii)
     else:
         return 2
 
 
 def ins_cost(first_or_last, char):
-    return 1 if not first_or_last else 2
+    return 1 if not first_or_last else 2  # see (i)
 
 
 def del_cost(first_or_last, char):
     if first_or_last:
+        return 4       # see (i) and (vi)
+    elif char == 'c':  # see (iv)
         return 4
-    elif char == 'c':
-        return 4
-    elif char == 'v':
+    elif char == 'v':  # see (v)
         return 4
     else:
         return 1
@@ -51,6 +49,8 @@ def min_distance(target, source):
 
     distance = [[0 for x in range(m+1)] for x in range(n+1)]
 
+    # the weird boolean expressions in the cost functions tell if at the beginning/end of a word
+    # see (i)
     for i in range(1, n+1):
         distance[i][0] = distance[i-1][0] + ins_cost(i == 1 or i == n + 1, target[i-1])
 
