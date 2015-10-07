@@ -16,15 +16,24 @@ misspellings_file.close()
 
 
 def sub_cost(source_char, target_char):
-    return 0 if source_char == target_char else 2
+    if source_char == target_char:
+        return 0
+    elif (source_char == 'a' and target_char == 'e') or (source_char == 'e' and target_char == 'a'):
+        return 1
+    elif (source_char == 's' and target_char == 'c') or (source_char == 'c' and target_char == 's'):
+        return 1
+    # elif (source_char == 's' and target_char == 'r') or (source_char == 'r' and target_char == 's'):
+    #     return 1
+    else:
+        return 2
 
 
-def ins_cost():
-    return 1
+def ins_cost(first_or_last):
+    return 1 if not first_or_last else 2
 
 
-def del_cost():
-    return 1
+def del_cost(first_or_last):
+    return 1 if not first_or_last else 4
 
 
 def min_distance(target, source):
@@ -34,14 +43,14 @@ def min_distance(target, source):
     distance = [[0 for x in range(m+1)] for x in range(n+1)]
 
     for i in range(1, n+1):
-        distance[i][0] = distance[i-1][0] + ins_cost()
+        distance[i][0] = distance[i-1][0] + ins_cost(i == 1 or i == n + 1)
 
     for j in range(1, m+1):
-        distance[0][j] = distance[0][j-1] + del_cost()
+        distance[0][j] = distance[0][j-1] + del_cost(j == 1 or j == m + 1)
 
     for i in range(1, n+1):
         for j in range(1, m+1):
-            distance[i][j] = min(distance[i-1][j] + ins_cost(), distance[i-1][j-1] + sub_cost(source[j-1], target[i-1]), distance[i][j-1] + del_cost())
+            distance[i][j] = min(distance[i-1][j] + ins_cost(i == 1 or i == n + 1 or j == 1 or j == m + 1), distance[i-1][j-1] + sub_cost(source[j-1], target[i-1]), distance[i][j-1] + del_cost(i == 1 or i == n + 1 or j == 1 or j == m + 1))
 
     return distance[n][m]
 
