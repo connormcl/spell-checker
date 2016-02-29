@@ -64,6 +64,7 @@ def min_distance(target, source):
     return distance[n][m]
 
 
+print 'Writing corrections to suggestions.txt, this may take a couple minutes...'
 for word in misspellings:
     abs_min = min_distance(dictionary[0], word)
     correction = dictionary[0]
@@ -76,3 +77,5 @@ for word in misspellings:
     corrections_file.write(correction+'\n')
 
 corrections_file.close()
+
+print 'Done.'
