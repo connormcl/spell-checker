@@ -17,6 +17,7 @@ $ python spelling_correction.py DICT MISSPELLINGS
 * DICT - the dictionary file the program will offer a suggestion from
 * MISSPELLINGS - the file of misspellings
 
+Note: this is a simple, brute force algorithm. The larger the dict and misspelling files are, the longer it will take to complete.
 
 ## Example
 One dictionary file and four misspelling files of various sizes have been provided for testing.
