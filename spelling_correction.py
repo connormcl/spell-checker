@@ -84,7 +84,7 @@ for word in misspellings:
             abs_min = new_min
             correction = target
 
-    corrections_file.write(correction+'\n')
+    corrections_file.write(word+' --> '+correction+'\n')
 
 corrections_file.close()
 
