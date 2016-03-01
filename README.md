@@ -14,7 +14,7 @@ Run the Python script
 ```
 $ python spelling_correction.py DICT MISSPELLINGS
 ```
-* DICT - the dictionary file the program will offer a suggestion from
+* DICT - the dictionary file from which the program will offer a suggestion
 * MISSPELLINGS - the file of misspellings
 
 Note: this is a simple, brute force algorithm. The larger the dict and misspelling files are, the longer it will take to complete.
